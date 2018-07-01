@@ -145,7 +145,7 @@ int main(int argc, char** argv)
                 {
                     //Open Serial port..
                     xk::xkserial sp;
-                    sp.open("/dev/ttyUSB0", xk::XKBaud::BAUD_115200);
+                    sp.open("/dev/ttyUSB0", xk::XKBaud::BAUD_9600);
 
 
                     //write client msg to serial port..
