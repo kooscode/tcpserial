@@ -62,6 +62,10 @@ namespace xk
             retval = (uint32_t) dataString.length();
             _serial_stream.write(dataString.c_str() , retval);
         }
+        else
+        {
+            std::cout << "serial write not OK..." << std::endl;
+        }
         
         return retval;
     }
@@ -73,10 +77,14 @@ namespace xk
         char inchars[1024];
         memset(&inchars, 0, 1024);
         
-        if (_serial_stream.good());   
+        if (_serial_stream.good())
         {
             _serial_stream.getline(inchars, 1024);
             retval = string(inchars);
+        }
+        else
+        {
+            std::cout << "serial read not OK..." << std::endl;
         }
             
         
