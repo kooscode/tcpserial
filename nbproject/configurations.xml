@@ -4,8 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.hpp</itemPath>
-      <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,8 +13,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
-      <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.cpp</itemPath>
-      <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -30,6 +26,10 @@
       <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/videotracker/.gitignore</itemPath>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>xkerror.cpp</itemPath>
+    <itemPath>xkerror.hpp</itemPath>
+    <itemPath>xkserial.cpp</itemPath>
+    <itemPath>xkserial.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -50,27 +50,15 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkerror.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkerror.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="xkserial.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkserial.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -93,27 +81,15 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="/home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkerror.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkerror.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="xkserial.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="xkserial.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

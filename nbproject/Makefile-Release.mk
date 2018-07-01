@@ -35,9 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/8cf7d77f/xkerror.o \
-	${OBJECTDIR}/_ext/8cf7d77f/xkserial.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/xkerror.o \
+	${OBJECTDIR}/xkserial.o
 
 
 # C Compiler Flags
@@ -64,20 +64,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tcpserial: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tcpserial ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/8cf7d77f/xkerror.o: /home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/8cf7d77f
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/8cf7d77f/xkerror.o /home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkerror.cpp
-
-${OBJECTDIR}/_ext/8cf7d77f/xkserial.o: /home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/8cf7d77f
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/8cf7d77f/xkserial.o /home/koos/Desktop/Dropbox/Private/Code/cpp/tcpserial/xkserial.cpp
-
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/xkerror.o: xkerror.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkerror.o xkerror.cpp
+
+${OBJECTDIR}/xkserial.o: xkserial.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkserial.o xkserial.cpp
 
 # Subprojects
 .build-subprojects:
