@@ -4,6 +4,8 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>xkerror.hpp</itemPath>
+      <itemPath>xkserial.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,6 +15,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
+      <itemPath>xkerror.cpp</itemPath>
+      <itemPath>xkserial.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -26,10 +30,6 @@
       <itemPath>/home/koos/Desktop/Dropbox/Private/Code/cpp/videotracker/.gitignore</itemPath>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>xkerror.cpp</itemPath>
-    <itemPath>xkerror.hpp</itemPath>
-    <itemPath>xkserial.cpp</itemPath>
-    <itemPath>xkserial.hpp</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -45,8 +45,8 @@
         </ccTool>
         <linkerTool>
           <linkerLibItems>
-            <linkerOptionItem>`pkg-config --libs libserial`</linkerOptionItem>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerLibLibItem>serialport</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

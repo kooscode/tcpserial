@@ -54,7 +54,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=`pkg-config --libs libserial` -lpthread   
+LDLIBSOPTIONS=-lpthread -lserialport
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -67,17 +67,17 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tcpserial: ${OBJECTFILES}
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags libserial` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/xkerror.o: xkerror.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags libserial` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkerror.o xkerror.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkerror.o xkerror.cpp
 
 ${OBJECTDIR}/xkserial.o: xkserial.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g `pkg-config --cflags libserial` -std=c++11  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkserial.o xkserial.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkserial.o xkserial.cpp
 
 # Subprojects
 .build-subprojects:

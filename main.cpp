@@ -24,16 +24,46 @@
 #include <arpa/inet.h>
 
 //serial comms
+#include <libserialport.h>
 #include "xkserial.hpp"
-
-
-#include "SerialPort.h"
 
 #define PORT 50505
 #define BACKLOG 10
 
 int main(int argc, char** argv) 
 {
+    
+    sp_port* ttyport;
+    
+    if  ( sp_get_port_by_name("/dev/ttyUSB0", &ttyport) != SP_OK)
+    {
+        std::cout << "Error getting serial device.";
+        return -1;
+    }
+    
+    sp_set_baudrate(ttyport, 9600);
+  
+    if (sp_open(ttyport, SP_MODE_READ_WRITE) != SP_OK)
+    {
+        std::cout << "Error opening serial device.";
+        return -1;
+    }
+    
+    usleep(2000000);
+
+    //read initial buffer
+    char ttybuff[1024];
+    //get serial return & send back to client
+    std::cout << "<SERIAL START>" << std::endl;
+    std::string instr = "[NA]\n\r";
+    memset(&ttybuff, 0x00, sizeof(ttybuff));
+    int readsize = sp_blocking_read_next(ttyport, &ttybuff, sizeof(ttybuff), 1000);
+    if (readsize > 0)
+    {
+        instr =  std::string(ttybuff);
+        std::cout << "SERIAL: " << instr << std::endl;
+    }
+
     struct sockaddr_in server;
     struct sockaddr_in dest;
     int status, socket_fd, client_fd;
@@ -143,28 +173,26 @@ int main(int argc, char** argv)
                 }
                 else
                 {
-                    //Open Serial port..
-                    xk::xkserial sp;
-                    sp.open("/dev/ttyUSB0", xk::XKBaud::BAUD_9600);
 
+                        //write client msg to serial port..
+                        std::cout << "<SERIAL WRITE>" << std::endl;
+                        sp_blocking_write(ttyport, msg.c_str(), msg.length(), 1000);
 
-                    //write client msg to serial port..
-                    std::cout << "<SERIAL WRITE>" << std::endl;
-                    sp.write(msg);
- 
-                    //get serial return & send back to client
-                    std::cout << "<SERIAL READ>" << std::endl;
-                    msg = sp.readstring() + "\n";
+                        //get serial return & send back to client
+                        std::cout << "<SERIAL READ>" << std::endl;
+                        instr = "[NA]\n\r";
+                        memset(&ttybuff, 0x00, sizeof(ttybuff));
+                        int readsize = sp_blocking_read_next(ttyport, &ttybuff, sizeof(ttybuff), 1000);
+                        if (readsize > 0)
+                        {
+                            instr =  std::string(ttybuff);
+                            //Echo serial msg to terminal..
+                            std::cout << "SERIAL: " << instr << std::endl;
+                        }
 
-                   
-                    //Echo serial msg to terminal..
-                    std::cout << "SERIAL: " << msg << std::endl;
-                    
-                    //send serial msg to client
-                    std::cout << "<TCP WRITE>" << std::endl;
-                    write(client_fd, msg.c_str(), msg.length());
-                                     
-                    //sp.close();
+                        //send serial msg to client
+                        std::cout << "<TCP WRITE>" << std::endl;
+                        write(client_fd, instr.c_str(), instr.length());
                     
                 }
                 
@@ -176,6 +204,8 @@ int main(int argc, char** argv)
         
    }
     close(socket_fd);   
+    sp_close(ttyport);
+
     
     return 0;
 }
