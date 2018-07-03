@@ -6,14 +6,14 @@
 CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
-# Debug configuration
-CND_PLATFORM_Debug=GNU-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=tcpserial
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/tcpserial
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=tcpserial.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/tcpserial.tar
+# Debug_Linux configuration
+CND_PLATFORM_Debug_Linux=GNU-Linux
+CND_ARTIFACT_DIR_Debug_Linux=dist/Debug_Linux/GNU-Linux
+CND_ARTIFACT_NAME_Debug_Linux=tcpserial
+CND_ARTIFACT_PATH_Debug_Linux=dist/Debug_Linux/GNU-Linux/tcpserial
+CND_PACKAGE_DIR_Debug_Linux=dist/Debug_Linux/GNU-Linux/package
+CND_PACKAGE_NAME_Debug_Linux=tcpserial.tar
+CND_PACKAGE_PATH_Debug_Linux=dist/Debug_Linux/GNU-Linux/package/tcpserial.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
@@ -22,6 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/tcpserial
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
 CND_PACKAGE_NAME_Release=tcpserial.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/tcpserial.tar
+# Debug_OSX configuration
+CND_PLATFORM_Debug_OSX=CLang-MacOSX
+CND_ARTIFACT_DIR_Debug_OSX=dist/Debug_OSX/CLang-MacOSX
+CND_ARTIFACT_NAME_Debug_OSX=tcpserial
+CND_ARTIFACT_PATH_Debug_OSX=dist/Debug_OSX/CLang-MacOSX/tcpserial
+CND_PACKAGE_DIR_Debug_OSX=dist/Debug_OSX/CLang-MacOSX/package
+CND_PACKAGE_NAME_Debug_OSX=tcpserial.tar
+CND_PACKAGE_PATH_Debug_OSX=dist/Debug_OSX/CLang-MacOSX/package/tcpserial.tar
 #
 # include compiler specific variables
 #
