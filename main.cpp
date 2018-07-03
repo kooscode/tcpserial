@@ -22,6 +22,7 @@
 #include <unistd.h>
 
 //socket stuff
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -37,8 +38,13 @@
 int main(int argc, char** argv) 
 {
     xk::xkserial serial1;
-    serial1.open("/dev/ttyUSB0", xk::BAUD_9600);
 
+#ifdef __APPLE__
+    serial1.open("/dev/tty.usbmodem14432121", xk::BAUD_9600);
+#else
+    serial1.open("/dev/ttyUSB0", xk::BAUD_9600);
+#endif
+    
     struct sockaddr_in server;
     struct sockaddr_in dest;
     int status, socket_fd, client_fd;
@@ -82,12 +88,10 @@ int main(int argc, char** argv)
     #endif
 
     //bind server socket
-    retval = bind(socket_fd, (struct sockaddr *)&server, sizeof(struct sockaddr ));
+    retval = ::bind(socket_fd, (struct sockaddr *)&server, sizeof(struct sockaddr ));
     if (retval == -1)
-    { 
-        perror("socket bind failed");
-    }
-
+        perror("bind failed");
+    
     //Start Listening mode..
     retval = listen(socket_fd, BACKLOG);
     if (retval == -1)
