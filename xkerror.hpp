@@ -6,15 +6,18 @@
 
 using namespace std;
 
-class xkerror: public exception
+namespace  xk
 {
-    public:
-        xkerror(string errmsg);
-        virtual const char* what() const throw();
-    private:
-        string _errmsg;
-};
 
+    class xkerror: public exception
+    {
+        public:
+            xkerror(string errmsg);
+            virtual const char* what() const throw();
+        private:
+            string _errmsg;
+    };
+}
 
 #endif /* XKERROR_HPP */
 

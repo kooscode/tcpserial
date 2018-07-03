@@ -37,7 +37,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/xkerror.o \
-	${OBJECTDIR}/xkserial.o
+	${OBJECTDIR}/xkserial.o \
+	${OBJECTDIR}/xkthread.o \
+	${OBJECTDIR}/xkthread_rx.o
 
 
 # C Compiler Flags
@@ -78,6 +80,16 @@ ${OBJECTDIR}/xkserial.o: xkserial.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkserial.o xkserial.cpp
+
+${OBJECTDIR}/xkthread.o: xkthread.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkthread.o xkthread.cpp
+
+${OBJECTDIR}/xkthread_rx.o: xkthread_rx.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/xkthread_rx.o xkthread_rx.cpp
 
 # Subprojects
 .build-subprojects:

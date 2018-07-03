@@ -26,43 +26,15 @@
 //serial comms
 #include <libserialport.h>
 #include "xkserial.hpp"
+#include "xkthread_rx.hpp"
 
 #define PORT 50505
 #define BACKLOG 10
 
 int main(int argc, char** argv) 
 {
-    
-    sp_port* ttyport;
-    
-    if  ( sp_get_port_by_name("/dev/ttyUSB0", &ttyport) != SP_OK)
-    {
-        std::cout << "Error getting serial device.";
-        return -1;
-    }
-    
-    sp_set_baudrate(ttyport, 9600);
-  
-    if (sp_open(ttyport, SP_MODE_READ_WRITE) != SP_OK)
-    {
-        std::cout << "Error opening serial device.";
-        return -1;
-    }
-    
-    usleep(2000000);
-
-    //read initial buffer
-    char ttybuff[1024];
-    //get serial return & send back to client
-    std::cout << "<SERIAL START>" << std::endl;
-    std::string instr = "[NA]\n\r";
-    memset(&ttybuff, 0x00, sizeof(ttybuff));
-    int readsize = sp_blocking_read_next(ttyport, &ttybuff, sizeof(ttybuff), 1000);
-    if (readsize > 0)
-    {
-        instr =  std::string(ttybuff);
-        std::cout << "SERIAL: " << instr << std::endl;
-    }
+    xk::xkserial serial1;
+    serial1.open("/dev/ttyUSB0", xk::BAUD_9600);
 
     struct sockaddr_in server;
     struct sockaddr_in dest;
@@ -127,7 +99,7 @@ int main(int argc, char** argv)
         size = sizeof(struct sockaddr_in);  
 
         //start listen...
-        std::cout << "start listen" << std::endl;
+        std::cout << "TCP Listening..." << std::endl;
         
         client_fd = accept(socket_fd, (struct sockaddr *)&dest, &size); 
         if (client_fd == -1)
@@ -141,7 +113,11 @@ int main(int argc, char** argv)
             //Send connected msg
             std::string msg = "[[ WELCOME TO SERIAL TCP ]]\n";
             write(client_fd, msg.c_str(), msg.length());
-            
+
+            //start serial receive thread..
+            xk::xkthread_rx thread_rx(client_fd, &serial1);
+            thread_rx.thread_start("rx");
+                       
             while(true) 
             {   
                 //Get data sent from client
@@ -160,7 +136,7 @@ int main(int argc, char** argv)
                 
                 //read TCP msg
                 msg = std::string (buffer);
-                std::cout << "TCP: " << msg << std::endl;
+                std::cout << "TCP > TTY: " << msg << std::endl;
 
                 if (msg.substr(0,1) == "!")
                 {
@@ -172,40 +148,22 @@ int main(int argc, char** argv)
                     std::cout << "<empty>" << std::endl;
                 }
                 else
-                {
-
-                        //write client msg to serial port..
-                        std::cout << "<SERIAL WRITE>" << std::endl;
-                        sp_blocking_write(ttyport, msg.c_str(), msg.length(), 1000);
-
-                        //get serial return & send back to client
-                        std::cout << "<SERIAL READ>" << std::endl;
-                        instr = "[NA]\n\r";
-                        memset(&ttybuff, 0x00, sizeof(ttybuff));
-                        int readsize = sp_blocking_read_next(ttyport, &ttybuff, sizeof(ttybuff), 1000);
-                        if (readsize > 0)
-                        {
-                            instr =  std::string(ttybuff);
-                            //Echo serial msg to terminal..
-                            std::cout << "SERIAL: " << instr << std::endl;
-                        }
-
-                        //send serial msg to client
-                        std::cout << "<TCP WRITE>" << std::endl;
-                        write(client_fd, instr.c_str(), instr.length());
-                    
+                {                 
+                    //write client msg to serial port..
+                    serial1.writeString(msg, 500);
+                       
+                    //All responses will come back async via thread_rx..
                 }
                 
             }        
     
             close(client_fd);   
+            thread_rx.thread_stopwait(); //Stop RX thread..
         }
 
         
    }
     close(socket_fd);   
-    sp_close(ttyport);
-
     
     return 0;
 }
