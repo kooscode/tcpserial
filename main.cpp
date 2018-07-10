@@ -39,11 +39,20 @@ int main(int argc, char** argv)
 {
     xk::xkserial serial1;
 
+    
 #ifdef __APPLE__
-    serial1.open("/dev/tty.usbmodem14432121", xk::BAUD_9600);
+   std::string serial_path = "/dev/tty.usbmodem14432121";
 #else
-    serial1.open("/dev/ttyUSB0", xk::BAUD_9600);
+   std::string serial_path = "/dev/ttyUSB0";
 #endif
+
+   //if port is supplied use supplied path..
+    if (argc > 1)
+    {
+       serial_path = argv[1];
+    }
+    
+    serial1.open(serial_path, xk::BAUD_9600);
     
     struct sockaddr_in server;
     struct sockaddr_in dest;
