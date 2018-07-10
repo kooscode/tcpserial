@@ -22,18 +22,17 @@
 #include <iostream>
 #include <exception>
 
-using namespace std;
-
 namespace  xk
 {
 
-    class xkerror: public exception
+    class xkerror: public std::exception
     {
         public:
-            xkerror(string errmsg);
+            xkerror(std::string errmsg);
             virtual const char* what() const throw();
+            
         private:
-            string _errmsg;
+            std::string _errmsg;
     };
 }
 

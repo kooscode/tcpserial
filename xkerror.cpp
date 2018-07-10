@@ -20,7 +20,7 @@
 
 namespace xk
 {
-    xkerror::xkerror(string errmsg)
+    xkerror::xkerror(std::string errmsg)
     {
         _errmsg = errmsg;
     }
