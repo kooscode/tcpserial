@@ -40,10 +40,26 @@ namespace xk
             if (_pttyport->isopen)
             {
                 //read msg from Serial
-                std::string ttymsg = _pttyport->readstring(128, 250);
+                _instring += _pttyport->readstring(128, 250);
+                
+                size_t nlpos = _instring.find('\n') + 1;
+                
+                //check if string read is \n terminated.
+                //if not, might be partial string, so keep and for next.
+                if (nlpos > 0)
+                {
+                    //cut out only up to \n terminator.
+                    std::string ttymsg = _instring.substr(0, nlpos);
 
-                //send msg to TCP client
-                write(_socket_fd, ttymsg.c_str(), ttymsg.length());
+                    //keep remainder around or reset.
+                    _instring = (_instring.length() > nlpos) ? _instring.substr(nlpos, _instring.length()) : "";
+                    
+                    //send msg to TCP client
+                    write(_socket_fd, ttymsg.c_str(), ttymsg.length());                    
+
+                    std::cout << "TTY > TCP: " << ttymsg ;
+                }
+
 
             }
         

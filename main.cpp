@@ -137,7 +137,6 @@ int main(int argc, char** argv)
             while(true) 
             {   
                 //Get data sent from client
-                std::cout << "<TCP RECV>" << std::endl;
                 int inbytes = recv(client_fd, buffer, 10240,0);
                 if (inbytes < 0)
                 {

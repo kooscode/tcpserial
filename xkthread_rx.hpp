@@ -37,8 +37,10 @@ namespace xk
         private:
             //implementation of base class pure virtual functions..
             void thread_runloop();
-            int _socket_fd = 0;
-            xkserial* _pttyport = nullptr;
+            
+            int         _socket_fd = 0;
+            xkserial*   _pttyport = nullptr;            
+            std::string _instring = ""; 
             
     };
     
