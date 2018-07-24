@@ -1,6 +1,6 @@
 /*
  * Simple application to proxy Serial Port to TCP Server 
- * Copyright (C) 2017 Jacobus du Preez / kdupreez@hotmail.com
+ * Copyright (C) 2017 TerraClear, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

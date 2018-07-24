@@ -1,6 +1,6 @@
 /*
  * Base C++ cross platform threading class 
- * Copyright (C) 2017 Jacobus du Preez / kdupreez@hotmail.com
+ * Copyright (C) 2017 TerraClear, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ namespace  xk
         _threadRunning = true;
 
         pthread_create(&_thread_main, NULL, thread_run, this);
-        std::cout << "Thread Started: " << _threadName << std::endl;
+        std::cout << ">>> STARTED THREAD: " << _threadName << std::endl;
     }
 
     void* xkthread::thread_run(void* thread_obj)
