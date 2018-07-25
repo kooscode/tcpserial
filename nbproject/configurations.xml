@@ -4,10 +4,18 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>xkerror.hpp</itemPath>
-      <itemPath>xkserial.hpp</itemPath>
-      <itemPath>xkthread.hpp</itemPath>
-      <itemPath>xkthread_rx.hpp</itemPath>
+      <itemPath>thread_rx.hpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f1"
+                   displayName="libterraclear"
+                   projectFiles="true"
+                   kind="ROOT">
+      <itemPath>../libterraclear/src/basicserial.cpp</itemPath>
+      <itemPath>../libterraclear/src/basicserial.hpp</itemPath>
+      <itemPath>../libterraclear/src/error_base.cpp</itemPath>
+      <itemPath>../libterraclear/src/error_base.hpp</itemPath>
+      <itemPath>../libterraclear/src/thread_base.cpp</itemPath>
+      <itemPath>../libterraclear/src/thread_base.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -17,10 +25,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
-      <itemPath>xkerror.cpp</itemPath>
-      <itemPath>xkserial.cpp</itemPath>
-      <itemPath>xkthread.cpp</itemPath>
-      <itemPath>xkthread_rx.cpp</itemPath>
+      <itemPath>thread_rx.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -55,23 +60,41 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../libterraclear/src/basicserial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/basicserial.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="xkerror.cpp" ex="false" tool="1" flavor2="0">
+      <item path="thread_rx.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="xkerror.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkserial.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkserial.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkthread.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread_rx.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkthread_rx.hpp" ex="false" tool="3" flavor2="0">
+      <item path="thread_rx.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -94,23 +117,41 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../libterraclear/src/basicserial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/basicserial.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="xkerror.cpp" ex="false" tool="1" flavor2="0">
+      <item path="thread_rx.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="xkerror.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkserial.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkserial.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkthread.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread_rx.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="xkthread_rx.hpp" ex="false" tool="3" flavor2="0">
+      <item path="thread_rx.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Debug_OSX" type="1">
@@ -131,23 +172,41 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../libterraclear/src/basicserial.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/basicserial.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/error_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../libterraclear/src/thread_base.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="8">
       </item>
-      <item path="xkerror.cpp" ex="false" tool="1" flavor2="8">
+      <item path="thread_rx.cpp" ex="false" tool="1" flavor2="8">
       </item>
-      <item path="xkerror.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkserial.cpp" ex="false" tool="1" flavor2="8">
-      </item>
-      <item path="xkserial.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread.cpp" ex="false" tool="1" flavor2="8">
-      </item>
-      <item path="xkthread.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="xkthread_rx.cpp" ex="false" tool="1" flavor2="8">
-      </item>
-      <item path="xkthread_rx.hpp" ex="false" tool="3" flavor2="0">
+      <item path="thread_rx.hpp" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

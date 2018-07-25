@@ -1,5 +1,5 @@
 /*
- * Base Error Class for C++ Exceptions 
+ * Simple application to proxy Serial Port to TCP Server 
  * Copyright (C) 2017 TerraClear, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,26 +15,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-            
-#ifndef XKERROR_HPP
-#define XKERROR_HPP
 
-#include <iostream>
-#include <exception>
+#ifndef XKTHREAD_RX_HPP
+#define XKTHREAD_RX_HPP
 
-namespace  xk
+#include <vector>
+
+#include "../libterraclear/src/thread_base.hpp"
+#include "../libterraclear/src/basicserial.hpp"
+
+namespace terraclear
 {
-
-    class xkerror: public std::exception
+    class thread_rx : public terraclear::thread_base
     {
         public:
-            xkerror(std::string errmsg);
-            virtual const char* what() const throw();
+            thread_rx(int socket_fd, basicserial* pttyport);
+            virtual ~thread_rx();
             
-        private:
-            std::string _errmsg;
-    };
-}
+            std::vector<std::string> _msglist;
 
-#endif /* XKERROR_HPP */
+        private:
+            //implementation of base class pure virtual functions..
+            void thread_runloop();
+            
+            int         _socket_fd = 0;
+            basicserial*   _pttyport = nullptr;            
+            std::string _instring = ""; 
+            
+    };
+    
+}
+#endif /* XKTHREAD_RX_HPP */
 

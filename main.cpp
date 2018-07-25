@@ -29,15 +29,15 @@
 
 //serial comms
 #include <libserialport.h>
-#include "xkserial.hpp"
-#include "xkthread_rx.hpp"
+#include "../libterraclear/src/basicserial.hpp"
+#include "thread_rx.hpp"
 
 #define PORT 50505
 #define BACKLOG 10
 
 int main(int argc, char** argv) 
 {
-    xk::xkserial serial1;
+    terraclear::basicserial serial1;
 
     
 #ifdef __APPLE__
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
        serial_path = argv[1];
     }
     
-    serial1.open(serial_path, xk::BAUD_9600);
+    serial1.open(serial_path, terraclear::BAUD_9600);
     
     struct sockaddr_in server;
     struct sockaddr_in dest;
@@ -131,8 +131,8 @@ int main(int argc, char** argv)
             write(client_fd, msg.c_str(), msg.length());
 
             //start serial receive thread..
-            xk::xkthread_rx thread_rx(client_fd, &serial1);
-            thread_rx.thread_start("rx");
+            terraclear::thread_rx trx(client_fd, &serial1);
+            trx.thread_start("rx");
                        
             while(true) 
             {   
@@ -173,7 +173,7 @@ int main(int argc, char** argv)
             }        
     
             close(client_fd);   
-            thread_rx.thread_stopwait(); //Stop RX thread..
+            trx.thread_stopwait(); //Stop RX thread..
         }
 
         
