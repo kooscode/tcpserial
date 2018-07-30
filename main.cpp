@@ -52,7 +52,7 @@ int main(int argc, char** argv)
        serial_path = argv[1];
     }
     
-    serial1.open(serial_path, terraclear::BAUD_9600);
+    serial1.open(serial_path, terraclear::BAUD_115200);
     
     struct sockaddr_in server;
     struct sockaddr_in dest;
