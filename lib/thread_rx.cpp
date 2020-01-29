@@ -1,6 +1,6 @@
 /*
  * Simple application to proxy Serial Port to TCP Server 
- * Copyright (C) 2017 TerraClear, Inc.
+ * Copyright (C) 2017 Koos du Preez, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,12 +14,15 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * 
+ * MODIFIED BY: Koos du Preez - kdupreez@hotmail.com
 */
+
 
 #include <unistd.h>
 #include "thread_rx.hpp"
 
-namespace terraclear
+namespace kooscode
 {
     thread_rx::thread_rx(int socket_fd, basicserial* pttyport)
     {

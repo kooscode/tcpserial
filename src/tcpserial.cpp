@@ -29,15 +29,21 @@
 
 //serial comms
 #include <libserialport.h>
-#include "../libterraclear/src/basicserial.hpp"
+
+//libterraclear 
+//copied and modifed from https://github.com/TerraClear/libterraclear
+#include "error_base.hpp"
+#include "basicserial.hpp"
 #include "thread_rx.hpp"
 
 #define PORT 50505
 #define BACKLOG 10
 
+namespace kc = kooscode;
+
 int main(int argc, char** argv) 
 {
-    terraclear::basicserial serial1;
+    kc::basicserial serial1;
 
     
 #ifdef __APPLE__
@@ -46,14 +52,28 @@ int main(int argc, char** argv)
    std::string serial_path = "/dev/ttyUSB0";
 #endif
 
-   //if port is supplied use supplied path..
+   //if serial port is supplied use supplied path..
     if (argc > 1)
     {
        serial_path = argv[1];
     }
     
-    serial1.open(serial_path, terraclear::BAUD_115200);
-    
+   
+    try
+    {
+        //try to open serial port..
+        serial1.open(serial_path, kc::BAUD_115200);
+    } catch (kc::error_base err)
+    {
+        std::cout << "Error Opening Serial Port.. " << std::endl;
+        std::cout << "\tSyntax : tcpserial [SERIAL_DEVICE_PATH]" << std::endl;
+        std::cout << "\tExample: tcpserial /dev/ttyUSB0" << std::endl << std::endl;
+        return -1;
+    }
+
+    //Connected..
+    std::cout << "Connected Serial Device: " << serial_path << " @ " << kc::BAUD_115200 << "bps" << std::endl;
+
     struct sockaddr_in server;
     struct sockaddr_in dest;
     int status, socket_fd, client_fd;
@@ -97,7 +117,7 @@ int main(int argc, char** argv)
     #endif
 
     //bind server socket
-    retval = ::bind(socket_fd, (struct sockaddr *)&server, sizeof(struct sockaddr ));
+    retval = bind(socket_fd, (struct sockaddr *)&server, sizeof(struct sockaddr ));
     if (retval == -1)
         perror("bind failed");
     
@@ -115,7 +135,7 @@ int main(int argc, char** argv)
         size = sizeof(struct sockaddr_in);  
 
         //start listen...
-        std::cout << "TCP Listening..." << std::endl;
+        std::cout << "TCP Listening on port: " << PORT << std::endl;
         
         client_fd = accept(socket_fd, (struct sockaddr *)&dest, &size); 
         if (client_fd == -1)
@@ -131,7 +151,7 @@ int main(int argc, char** argv)
             write(client_fd, msg.c_str(), msg.length());
 
             //start serial receive thread..
-            terraclear::thread_rx trx(client_fd, &serial1);
+            kc::thread_rx trx(client_fd, &serial1);
             trx.thread_start("rx");
                        
             while(true) 
