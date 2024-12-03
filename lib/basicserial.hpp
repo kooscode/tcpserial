@@ -25,8 +25,19 @@
 #include <stdio.h>
 #include <iostream>
 
-//using libserialport from sigrok
-// https://sigrok.org/wiki/Libserialport
+// # using libserialport from sigrok : https://sigrok.org/wiki/Libserialport
+// # -----------------------------------------------------------------------
+// # STEP 1 - CLONE SRC
+// git clone git://sigrok.org/libserialport
+// #  STEP 2 - INSTALL Autoconf dependencies
+// sudo apt install autoconf libtool
+// #  STEP 3 - make and install
+// cd libserialport
+// ./autogen.sh
+// ./configure
+// make
+// sudo make install
+
 #include <libserialport.h>
 
 namespace  kooscode

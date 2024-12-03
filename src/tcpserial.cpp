@@ -153,7 +153,7 @@ int main(int argc, char** argv)
             //start serial receive thread..
             kc::thread_rx trx(client_fd, &serial1);
             trx.thread_start("rx");
-                       
+
             while(true) 
             {   
                 //Get data sent from client
@@ -186,8 +186,6 @@ int main(int argc, char** argv)
                 {                 
                     //write client msg to serial port..
                     serial1.writeString(msg, 500);
-                       
-                    //All responses will come back async via thread_rx..
                 }
                 
             }        
